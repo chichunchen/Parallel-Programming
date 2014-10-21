@@ -7,8 +7,6 @@ double pi_estimate(long long int number_of_tosses)
 {
     long long int number_in_circle = 0;
     double x, y;
-
-    srand(time(0));     // use current time as seed for random generator
  
     for(int toss = 0; toss < number_of_tosses; toss++)
     {
@@ -25,10 +23,17 @@ double pi_estimate(long long int number_of_tosses)
 
 int main(int argc, char const *argv[])
 {
-    int number_of_tosses = 0;
+    clock_t start_t, end_t;
+    long long int number_of_tosses = 0;
+
     cin >> number_of_tosses;
-    
-    cout << pi_estimate(number_of_tosses);
+   
+    start_t = clock();
+    cout << pi_estimate(number_of_tosses) << endl;
+    end_t = clock();
+
+    float diff = ((float)end_t - (float)start_t);
+    cout << "Calculating time is " << diff << " millisecond" << endl;
 
 	return 0;
 }
