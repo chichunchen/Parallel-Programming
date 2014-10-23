@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <pthread.h>
 using namespace std;
 
 double pi_estimate(long long int number_of_tosses)
