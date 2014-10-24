@@ -4,6 +4,28 @@
 #include <pthread.h>
 using namespace std;
 
+int thread_count;
+
+double pi_estimate(long long int);
+double pi_parallel_estimate(long long int);
+
+int main(int argc, char const *argv[])
+{
+    clock_t start_t, end_t;
+    long long int number_of_tosses = 0;
+
+    cin >> number_of_tosses;
+   
+    start_t = clock();
+    cout << pi_estimate(number_of_tosses) << endl;
+    end_t = clock();
+
+    float diff = ((float)end_t - (float)start_t);
+    cout << "Calculating time is " << diff << " millisecond" << endl;
+
+	return 0;
+}
+
 double pi_estimate(long long int number_of_tosses)
 {
     long long int number_in_circle = 0;
@@ -22,19 +44,8 @@ double pi_estimate(long long int number_of_tosses)
     return 4 * number_in_circle / ((double) number_of_tosses);
 }
 
-int main(int argc, char const *argv[])
+double pi_parallel_estimate(long long int number_of_tosses)
 {
-    clock_t start_t, end_t;
-    long long int number_of_tosses = 0;
 
-    cin >> number_of_tosses;
-   
-    start_t = clock();
-    cout << pi_estimate(number_of_tosses) << endl;
-    end_t = clock();
-
-    float diff = ((float)end_t - (float)start_t);
-    cout << "Calculating time is " << diff << " millisecond" << endl;
-
-	return 0;
+    return 0.0;
 }
