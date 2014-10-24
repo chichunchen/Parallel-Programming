@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
+#define THREAD_NUM 4
 typedef unsigned long long int unlong; 
 
 unlong number_in_circle = 0;
@@ -33,13 +34,14 @@ void *runner() {
 
 int main(int argc, const char *argv[])
 {
-    if (argc != 3) {
-        fprintf(stderr, "usage: ./pi <number of tosses> <threads>\n");
+    if (argc != 2) {
+        fprintf(stderr, "usage: ./pi <number of tosses>\n");
         exit(1);
     }
 
     unlong number_of_tosses = atoll(argv[1]);
-    int thread_count = atoi(argv[2]);
+    // int thread_count = atoi(argv[2]);
+    int thread_count = THREAD_NUM;
     points_per_thread = number_of_tosses / thread_count;
 
     /* Tried using clock, but it measures CPU time, not wall clock time,
