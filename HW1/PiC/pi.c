@@ -46,9 +46,9 @@ int main(int argc, const char *argv[])
 
     /* Tried using clock, but it measures CPU time, not wall clock time,
      * so doesn't demonstrate improvement gained by threading */
-    time_t start = time(NULL);
+    // time_t start = time(NULL);
 
-    srand((unsigned)time(NULL));
+    // srand((unsigned)time(NULL));
 
     pthread_t *threads = malloc(thread_count * sizeof(pthread_t));
 
@@ -69,8 +69,8 @@ int main(int argc, const char *argv[])
 
     double pi_estimate = (4. * (unlong)number_in_circle) / ((unlong)points_per_thread * thread_count); 
 
-    printf("Pi: %f\n", pi_estimate);
-    printf("Time: %d sec\n", (int)(time(NULL) - start));
+    printf("%f\n", pi_estimate);
+    // printf("Time: %d sec\n", (int)(time(NULL) - start));
 
     return 0;
 }
