@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define THREAD_NUM 4
+#define THREAD_NUM 8
 typedef unsigned long long int unlong; 
 
 unlong number_in_circle = 0;
