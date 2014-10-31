@@ -1,9 +1,9 @@
 CC=gcc
 CFLAGS=-g -Wall
-all: pi
+all: hw1_pthread
 
-pi: pi.c
-	$(CC) $(CFLAGS) -o pi pi.c
+pi: hw1_pthread.c
+	$(CC) $(CFLAGS) -o hw1_pthread hw1_pthread.c
 
 clean:
 	rm pi
