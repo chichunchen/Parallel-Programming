@@ -14,10 +14,11 @@ int main(int argc, char const *argv[])
     clock_t start_t, end_t;
     long long int number_of_tosses = 0;
 
+    cout << "Enter number of tosses: " ;
     cin >> number_of_tosses;
    
     start_t = clock();
-    cout << pi_estimate(number_of_tosses) << endl;
+    cout << "pi: " << pi_estimate(number_of_tosses) << endl;
     end_t = clock();
 
     float diff = ((float)end_t - (float)start_t);
@@ -44,8 +45,3 @@ double pi_estimate(long long int number_of_tosses)
     return 4 * number_in_circle / ((double) number_of_tosses);
 }
 
-double pi_parallel_estimate(long long int number_of_tosses)
-{
-
-    return 0.0;
-}
