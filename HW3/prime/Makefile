@@ -1,5 +1,5 @@
 program:
-	gcc prime.c
+	mpicc -o prime prime.c -lm	
 
 clean:
-	rm a.out
+	rm -f *.o *~ 
