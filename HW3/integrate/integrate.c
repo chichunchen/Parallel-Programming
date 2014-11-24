@@ -26,7 +26,7 @@ int main(int argc, char **argv)
     }
 
     /* Sent num_intervals to all the other process from root process */
-    MPI_Bcast(&num_intervals, 1, MPI_INT, FIRST, MPI_COMM_WORLD);
+    MPI_Bcast(&num_intervals, 1, MPI_LONG_LONG_INT, FIRST, MPI_COMM_WORLD);
 
     rect_width = PI / num_intervals;
 
