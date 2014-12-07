@@ -3,6 +3,8 @@ Parallel Programming
 
 The assignments for the course IOE5178 in NCTU, Parallel Programming Fall 2014.
 
+Click [here](https://chichunchen.github.io/Parallel-Programming/slides#1) to see my project slides.
+
 License
 ====================================
 
