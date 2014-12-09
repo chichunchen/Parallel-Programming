@@ -1,5 +1,5 @@
 program:
-	gcc -o wave wave.c
+	nvcc -o wave wave.cu
 
 clean:
 	rm wave

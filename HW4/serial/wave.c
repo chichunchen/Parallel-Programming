@@ -137,7 +137,7 @@ int main(int argc, const char *argv[])
     printf("Initializing points on the line...\n");
     init_line();
     printf("Updating all points for all time steps...\n");
-    // update();
+    update();
     printf("Printing final results...\n");
     printfinal();
     printf("\nDone.\n\n");
