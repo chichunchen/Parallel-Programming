@@ -1,0 +1,5 @@
+program:
+	g++ -o tut1 tut1.cpp -lOpenCL
+
+clean:
+	rm tut1
