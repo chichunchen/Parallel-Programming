@@ -4,6 +4,9 @@
 #include <opencv/highgui.h>
 #include <omp.h>
 
+float radiox,
+      radioy;
+
 void MatrixMultiply(float *co, float *out , float matrix[][3])
 {
 	out[0]=0;
@@ -49,10 +52,6 @@ void bicubicInterpolate(IplImage *image)
 	unsigned char GMat[4][4]={0};
 	unsigned char RMat[4][4]={0};
 	float Bv,Gv,Rv;	
-
-    // 放大倍率
-	float radiox = 3,
-          radioy = 3;
 
 	float scalingMatrix[3][3]={{1/radiox , 0        , 0},
 							   {0        , 1/radioy , 0},
@@ -157,15 +156,27 @@ void bicubicInterpolate(IplImage *image)
 	}
 
 	cvShowImage("bicubic",image_bic);	
+    cvSaveImage("after.tif", image_bic);
 }
 
-int main(void)
+int main(int argc, const char *argv[])
 {	
+    /* Input Scale */
+    if (argc != 3) {
+        fprintf(stderr, "usage: ./test <radiox> <radioy>\n");
+        exit(1);
+    }
+    radiox = atoi(argv[1]);
+    radioy = atoi(argv[2]);
+
+    /* Show original picture */
+
 	IplImage *image = cvLoadImage("before.tif");	
 	cvShowImage("before", image);
 
+    /* Bicubic Interpolation */
+
 	bicubicInterpolate(image);
-	cvSaveImage("after.tif", image);
 
 	cvWaitKey(0);
 	return 0;

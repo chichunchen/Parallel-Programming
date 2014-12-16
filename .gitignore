@@ -21,7 +21,9 @@
 *.out
 *.app
 bin/
+test
 
 # PDF
 *.pdf
 
+after.tif
