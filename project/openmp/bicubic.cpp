@@ -2,6 +2,7 @@
 #include <math.h>
 #include <opencv2/opencv.hpp>
 #include <opencv/highgui.h>
+#include <omp.h>
 
 void MatrixMultiply(float *co, float *out , float matrix[][3])
 {
