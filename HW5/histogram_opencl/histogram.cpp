@@ -11,9 +11,9 @@ unsigned int * histogram(unsigned int * image_data, unsigned int _size)
     unsigned int * ref_histogram_results;
     unsigned int * ptr;
 
-    ref_histogram_results = (unsigned int *)malloc(256 * 3);
+    ref_histogram_results = (unsigned int *)malloc(256 * 3 * sizeof(unsigned int));
     ptr = ref_histogram_results;
-    memset(ref_histogram_results, 0x0, 256 * 3);
+    memset(ref_histogram_results, 0x0, 256 * 3 * sizeof(unsigned int));
 
     // histogram of R
     for (unsigned int i = 0; i < _size; i += 3) 
