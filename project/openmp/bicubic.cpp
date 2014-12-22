@@ -4,6 +4,9 @@
 #include <opencv/highgui.h>
 #include <omp.h>
 
+float radiox,
+      radioy;
+
 void MatrixMultiply(float *co, float *out , float matrix[][3])
 {
 	out[0]=0;
@@ -21,14 +24,15 @@ void MatrixMultiply(float *co, float *out , float matrix[][3])
 
 float caculateMatrix(float *su,float *sv , unsigned char B[][4])
 {
+    int i;
 	float BC[4]={0};
 	float ABC=0;
 
-	for(int i=0;i<4;i++)
+	for(i=0;i<4;i++)
 		for(int j=0;j<4;j++)
 			BC[i] += ((float)B[i][j])*su[j];			
 
-	for(int i=0;i<4;i++)
+	for(i=0;i<4;i++)
 		ABC+= sv[i]*BC[i];
 
 	return ABC;
@@ -50,10 +54,6 @@ void bicubicInterpolate(IplImage *image)
 	unsigned char RMat[4][4]={0};
 	float Bv,Gv,Rv;	
 
-    // 放大倍率
-	float radiox = 3,
-          radioy = 3;
-
 	float scalingMatrix[3][3]={{1/radiox , 0        , 0},
 							   {0        , 1/radioy , 0},
 							   {0        , 0        , 1}};	
@@ -70,6 +70,7 @@ void bicubicInterpolate(IplImage *image)
 
 	
     /* Parallel Part */
+#pragma omp parallel for private(j, i)
 	for(j = 0; j < height_t; j++) {
 		for(i = 0; i < width_t; i++) {
 			px = (float)i;
@@ -109,6 +110,7 @@ void bicubicInterpolate(IplImage *image)
 				deltay[1] = fabs(py-bicy);
 				deltay[2] = fabs(py-(bicy+1));
 				deltay[3] = fabs(py-(bicy+2));
+
 
 
 				for(k = 0; k < 4; k++) 
@@ -157,15 +159,27 @@ void bicubicInterpolate(IplImage *image)
 	}
 
 	cvShowImage("bicubic",image_bic);	
+    cvSaveImage("after.tif", image_bic);
 }
 
-int main(void)
+int main(int argc, const char *argv[])
 {	
+    /* Input Scale */
+    if (argc != 3) {
+        fprintf(stderr, "usage: ./test <radiox> <radioy>\n");
+        exit(1);
+    }
+    radiox = atoi(argv[1]);
+    radioy = atoi(argv[2]);
+
+    /* Show original picture */
+
 	IplImage *image = cvLoadImage("before.tif");	
 	cvShowImage("before", image);
 
+    /* Bicubic Interpolation */
+
 	bicubicInterpolate(image);
-	cvSaveImage("after.tif", image);
 
 	cvWaitKey(0);
 	return 0;
