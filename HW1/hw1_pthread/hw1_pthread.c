@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-typedef unsigned long long int unlong; 
+typedef unsigned long long int unlong;
 
 unlong number_in_circle = 0;
 unlong points_per_thread;
@@ -23,7 +23,7 @@ void *runner() {
             number_in_circle_in_thread++;
         }
     }
-    
+
     pthread_mutex_lock(&mutex);
     number_in_circle += number_in_circle_in_thread;
     pthread_mutex_unlock(&mutex);
